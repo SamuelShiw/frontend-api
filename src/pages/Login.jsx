@@ -1,49 +1,54 @@
 import { useState } from "react";
 
 function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [mensaje, setMensaje] = useState("");
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-    if (!username || !password) {
-      setMensaje("Debe completar usuario y contraseña");
-      return;
-    }
-
-    setMensaje(`Intentando iniciar sesión con el usuario: ${username}`);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Login demostrativo");
   };
 
   return (
-    <div>
-      <h1>Iniciar sesión</h1>
+    <section className="auth-wrapper">
+      <form className="auth-card" onSubmit={handleSubmit}>
+        <h2>Iniciar sesión</h2>
+        <p>Accede al panel de gestión de items.</p>
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Usuario:</label>
+        <div className="form-group">
+          <label>Correo electrónico</label>
           <input
-            type="text"
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
+            type="email"
+            name="email"
+            placeholder="admin@email.com"
+            value={form.email}
+            onChange={handleChange}
           />
         </div>
 
-        <div>
-          <label>Contraseña:</label>
+        <div className="form-group">
+          <label>Contraseña</label>
           <input
             type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
+            name="password"
+            placeholder="********"
+            value={form.password}
+            onChange={handleChange}
           />
         </div>
 
-        <button type="submit">Ingresar</button>
+        <button className="btn btn-primary">Ingresar</button>
       </form>
-
-      {mensaje && <p>{mensaje}</p>}
-    </div>
+    </section>
   );
 }
 

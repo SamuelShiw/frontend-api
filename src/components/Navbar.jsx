@@ -2,15 +2,15 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
-    <nav>
-      <h2>Frontend API</h2>
+    <nav className="navbar">
+      <div className="logo">Frontend API</div>
 
-      <ul>
-        <li><Link to="/">Login</Link></li>
-        <li><Link to="/register">Registro</Link></li>
-        <li><Link to="/dashboard">Dashboard</Link></li>
-        <li><Link to="/items">Items</Link></li>
-      </ul>
+      <div className="nav-links">
+        <Link to="/">Login</Link>
+        <Link to="/register">Register</Link>
+        <Link to="/dashboard">Dashboard</Link>
+        <Link to="/items">Items</Link>
+      </div>
     </nav>
   );
 }

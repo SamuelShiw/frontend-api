@@ -1,5 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -8,7 +7,7 @@ import Items from "./pages/Items";
 
 function App() {
   return (
-    <BrowserRouter>
+    <div className="app-container">
       <Navbar />
 
       <Routes>
@@ -17,7 +16,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/items" element={<Items />} />
       </Routes>
-    </BrowserRouter>
+    </div>
   );
 }
 

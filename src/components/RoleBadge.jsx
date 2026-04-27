@@ -1,7 +1,13 @@
 function RoleBadge({ role }) {
+  const roleClass = {
+    admin: "role-admin",
+    editor: "role-editor",
+    reader: "role-reader",
+  };
+
   return (
-    <span>
-      Rol: {role}
+    <span className={`role-badge ${roleClass[role]}`}>
+      {role.toUpperCase()}
     </span>
   );
 }

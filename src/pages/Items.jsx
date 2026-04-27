@@ -1,45 +1,45 @@
-import { useState } from "react";
 import ItemCard from "../components/ItemCard";
 
 function Items() {
-  const [items, setItems] = useState([
+  const items = [
     {
       id: 1,
-      nombre: "Laptop",
-      descripcion: "Equipo de prueba",
-      estado: true
+      name: "Laptop Lenovo",
+      description: "Equipo registrado para inventario tecnológico.",
+      status: "Activo",
     },
     {
       id: 2,
-      nombre: "Mouse",
-      descripcion: "Accesorio de prueba",
-      estado: false
-    }
-  ]);
-
-  const agregarItem = () => {
-    const nuevoItem = {
-      id: items.length + 1,
-      nombre: "Teclado",
-      descripcion: "Agregado con useState",
-      estado: true
-    };
-
-    setItems([...items, nuevoItem]);
-  };
+      name: "Mouse Logitech",
+      description: "Accesorio disponible para uso interno.",
+      status: "Disponible",
+    },
+    {
+      id: 3,
+      name: "Monitor Samsung",
+      description: "Pantalla asignada al área administrativa.",
+      status: "En uso",
+    },
+  ];
 
   return (
-    <div>
-      <h1>Items</h1>
+    <main className="page">
+      <h1 className="page-title">Gestión de Items</h1>
+      <p className="page-subtitle">
+        Lista visual de items registrados en el sistema.
+      </p>
 
-      <button onClick={agregarItem}>
-        Agregar item
-      </button>
-
-      {items.map((item) => (
-        <ItemCard key={item.id} item={item} />
-      ))}
-    </div>
+      <div className="grid">
+        {items.map((item) => (
+          <ItemCard
+            key={item.id}
+            name={item.name}
+            description={item.description}
+            status={item.status}
+          />
+        ))}
+      </div>
+    </main>
   );
 }
 

@@ -1,9 +1,14 @@
-function ItemCard({ item }) {
+function ItemCard({ name, description, status }) {
   return (
-    <div>
-      <h3>{item.nombre}</h3>
-      <p>{item.descripcion}</p>
-      <p>Estado: {item.estado ? "Activo" : "Inactivo"}</p>
+    <div className="item-card">
+      <h3>{name}</h3>
+      <p>{description}</p>
+      <strong>Estado: {status}</strong>
+
+      <div className="item-actions">
+        <button className="btn btn-small btn-warning">Editar</button>
+        <button className="btn btn-small btn-danger">Eliminar</button>
+      </div>
     </div>
   );
 }
