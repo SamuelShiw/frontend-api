@@ -1,31 +1,57 @@
-import RoleBadge from "../components/RoleBadge";
+import { useEffect, useState } from "react";
+import { getItems } from "../services/api";
 
 function Dashboard() {
+  const [totalItems, setTotalItems] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const items = await getItems();
+        setTotalItems(items.length);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadData();
+  }, []);
+
   return (
     <main className="page">
       <h1 className="page-title">Dashboard</h1>
-      <p className="page-subtitle">
-        Resumen general del sistema y roles disponibles.
-      </p>
+
+      {error && <p style={{ color: "red" }}>{error}</p>}
 
       <div className="grid">
         <div className="card dashboard-card">
-          <h3>Items registrados</h3>
-          <div className="dashboard-number">12</div>
-          <p>Total de items disponibles.</p>
+          <h3>Total de Items</h3>
+          <div className="dashboard-number">
+            {loading ? "..." : totalItems}
+          </div>
         </div>
 
         <div className="card dashboard-card">
-          <h3>Rol actual</h3>
-          <RoleBadge role="admin" />
-          <p>Permisos completos sobre los items.</p>
-        </div>
-
-        <div className="card dashboard-card">
-          <h3>Estado</h3>
+          <h3>Estado del Sistema</h3>
           <div className="dashboard-number">OK</div>
-          <p>Frontend listo para integrarse con backend.</p>
         </div>
+
+        <div className="card dashboard-card">
+          <h3>Sesión</h3>
+          <div className="dashboard-number">Activa</div>
+        </div>
+      </div>
+
+      <div className="card" style={{ marginTop: "30px" }}>
+        <h3>Acceso rápido</h3>
+
+        <a href="/items" className="btn btn-primary">
+          Ir a Items
+        </a>
       </div>
     </main>
   );

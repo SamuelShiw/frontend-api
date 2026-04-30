@@ -260,3 +260,18 @@ a {
     font-size: 28px;
   }
 }
+.nav-button {
+  background: transparent;
+  border: 1px solid #cbd5e1;
+  color: #cbd5e1;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.nav-button:hover {
+  color: white;
+  border-color: white;
+}
